@@ -243,6 +243,3 @@ while True:
         get_information()
     check_schedule(now_time, broadcast_data)
     time.sleep(60)
-    
-    
-bot.run(token)
