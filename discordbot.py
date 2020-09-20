@@ -1,5 +1,5 @@
 from discord.ext import commands
-inport os
+import os
 import traceback
 import time
 import requests
