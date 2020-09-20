@@ -261,4 +261,4 @@ while True:
     check_schedule(now_time, broadcast_data)
     time.sleep(60)
 
-but.run(token)
+bot.run(token)
