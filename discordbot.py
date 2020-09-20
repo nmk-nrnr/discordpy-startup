@@ -185,11 +185,10 @@ Hololive = {
         "https://yt3.ggpht.com/a/AATXAJwdbVEqtw7KGQgFjNJnbTRpAfgdharBHs7BmWMvmg=s100-c-k-c0xffffffff-no-rj-mo"
     ],
 
-} #配信者のチャンネルID, 配信者名, アイコン画像のURLのリスト
+} 
 
-webhook_url_Hololive = 'https://discordapp.com/api/webhooks/757153708940460057/CYpL4xpIUfyBysh2JM4rPDkBQIov9aw5Mi1wn1AS5TBKhTdBfQ3NIRFBnjn8Qv91wixq' #ホロライブ配信開始
-webhook_url_Hololive_yotei = 'https://discordapp.com/api/webhooks/757154006517940226/pAWlkgpvaPSNAIRcpU5BZzLhPc25UBPn1E2qQeDUFvF0EyoYIJjL3A19ohWnOh0KVDCW' #ホロライブ配信予定
-broadcast_data = {} #配信予定のデータを格納
+webhook_url_Hololive = 'https://discordapp.com/api/webhooks/757153708940460057/CYpL4xpIUfyBysh2JM4rPDkBQIov9aw5Mi1wn1AS5TBKhTdBfQ3NIRFBnjn8Qv91wixq'
+webhook_url_Hololive_yotei = 'https://discordapp.com/api/webhooks/757154006517940226/pAWlkgpvaPSNAIRcpU5BZzLhPc25UBPn1E2qQeDUFvF0EyoYIJjL3A19ohWnOh0KVDCW'
 
 YOUTUBE_API_KEY = ['AIzaSyDGcmSTLFh33RAe-bWO1Vyu0xk1dNTpzeY','AIzaSyC80I6-DalX5NXqPnHHn6gURzlrPBMQ_eM','AIzaSyDbfu-2PKUQuCDLqSvK0fan93yXEqqqEL4','AIzaSyBhq7jXWlAbe5qK3Uo4ktlBBQha8uk3_pQ']
 
@@ -206,37 +205,37 @@ def replace_JST(s):
     return (str(time[0]) + "/" + str(time[1]).zfill(2) + "/" + str(time[2]).zfill(2) + " " + str(time[3]).zfill(2) + "-" + str(time[4]).zfill(2) + "-" + str(time[5]).zfill(2))
 
 def post_to_discord(userId, videoId):
-    haishin_url = "https://www.youtube.com/watch?v=" + videoId #配信URL
-    content = "配信中！\n" + haishin_url #Discordに投稿される文章
+    haishin_url = "https://www.youtube.com/watch?v=" + videoId
+    content = "配信中！\n" + haishin_url 
     main_content = {
         "username": Hololive[userId][0], #配信者名
         "avatar_url": Hololive[userId][1], #アイコン
-        "content": content #文章
+        "content": content
     }
-    requests.post(webhook_url_Hololive, main_content) #Discordに送信
+    requests.post(webhook_url_Hololive, main_content)
     broadcast_data.pop(videoId)
     
 def get_information():
     tmp = copy.copy(broadcast_data)
-    api_now = 0 #現在どのYouTube APIを使っているかを記録
+    api_now = 0
     for idol in Hololive:
         api_link = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" + idol + "&key=" + YOUTUBE_API_KEY[api_now] + "&eventType=upcoming&type=video"
-        api_now = (api_now + 1) % len(YOUTUBE_API_KEY) #apiを1つずらす
+        api_now = (api_now + 1) % len(YOUTUBE_API_KEY)
         aaa = requests.get(api_link)
         v_data = json.loads(aaa.text)
         try:
-            for item in v_data['items']:#各配信予定動画データに関して
-                broadcast_data[item['id']['videoId']] = {'channelId':item['snippet']['channelId']} #channelIDを格納
+            for item in v_data['items']:
+                broadcast_data[item['id']['videoId']] = {'channelId':item['snippet']['channelId']} 
             for video in broadcast_data:
                 try:
-                    a = broadcast_data[video]['starttime'] #既にbroadcast_dataにstarttimeがあるかチェック
-                except KeyError:#なかったら
+                    a = broadcast_data[video]['starttime']
+                except KeyError:
                     aaaa = requests.get("https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails&id=" + video + "&key=" + YOUTUBE_API_KEY[api_now])
-                    api_now = (api_now + 1) % len(YOUTUBE_API_KEY) #apiを1つずらす
+                    api_now = (api_now + 1) % len(YOUTUBE_API_KEY) 
                     vd = json.loads(aaaa.text)
                     print(vd)
                     broadcast_data[video]['starttime'] = vd['items'][0]['liveStreamingDetails']['scheduledStartTime']
-        except KeyError: #配信予定がなくて403が出た
+        except KeyError: 
             continue
     for vi in broadcast_data:
         if(not(vi in tmp)):
@@ -249,10 +248,10 @@ def get_information():
 def check_schedule(now_time, broadcast_data):
     for bd in list(broadcast_data):
         try:
-            sd_time = dataformat_for_python(broadcast_data[bd]['starttime']) #配信スタート時間をdatetime型で保管
+            sd_time = dataformat_for_python(broadcast_data[bd]['starttime'])
             sd_time += timedelta(hours=9)
-            if(now_time >= sd_time):#今の方が配信開始時刻よりも後だったら
-                post_to_discord(broadcast_data[bd]['channelId'], bd) #ツイート
+            if(now_time >= sd_time):
+                post_to_discord(broadcast_data[bd]['channelId'], bd)
         except KeyError:
             continue
             
@@ -263,4 +262,4 @@ while True:
     check_schedule(now_time, broadcast_data)
     time.sleep(60)
 
-bot.run(token)
+bot.ran(token)
