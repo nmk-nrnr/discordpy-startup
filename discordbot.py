@@ -1,11 +1,6 @@
 from discord.ext import commands
 import os
 import traceback
-import time
-import requests
-import json
-import copy
-from datetime import datetime, timedelta, timezone
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -21,6 +16,12 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
+
+import time
+import requests
+import json
+import copy
+from datetime import datetime, timedelta, timezone
 
 Hololive = {
     "UCa5JOPRFXMbYz4pBUxAuBaA": [
