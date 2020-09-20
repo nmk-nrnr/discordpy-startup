@@ -166,12 +166,10 @@ def check_schedule(now_time, broadcast_data):
                 post_to_discord(broadcast_data[bd]['channelId'], bd) #ツイート
         except KeyError:
             continue
-
 while True:
     now_time = datetime.now() + timedelta(hours=9)
     if((now_time.minute == 0) and (now_time.hour % 2 == 0)):
         get_information()
     check_schedule(now_time, broadcast_data)
     time.sleep(60)
-
 bot.run(token)
