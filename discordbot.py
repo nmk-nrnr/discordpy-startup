@@ -122,7 +122,7 @@ Hololive = {
         "憂音",
         "https://yt3.ggpht.com/a/AATXAJwGAI-ofm4MuOfFkhq3TEtyFDI_WkUV7uAhlHxp=s100-c-k-c0xffffffff-no-rj-mo"
     ],
-    "UCdOcEgE71dj-OBTLcGrYu_w: [
+    "UCdOcEgE71dj-OBTLcGrYu_w": [
         "恋夢ルネア",
         "https://yt3.ggpht.com/a/AATXAJx4XP2WFb_Z_TS5Uvg0N5CTvUOhPcqUe1V5AD7l=s100-c-k-c0xffffffff-no-rj-mo"
     ],
