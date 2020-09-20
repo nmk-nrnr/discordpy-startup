@@ -1,3 +1,6 @@
+from discord.ext import commands
+inport os
+import traceback
 import time
 import requests
 import json
@@ -243,3 +246,5 @@ while True:
         get_information()
     check_schedule(now_time, broadcast_data)
     time.sleep(60)
+
+but.run(token)
