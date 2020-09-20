@@ -18,8 +18,8 @@ async def ping(ctx):
     await ctx.send('pong')
 
 Hololive = {
-    "UCp6993wxpyDPHUpavwDFqgg": [
-        "ときのそら",
+    "UCp0YZhY8IV92EYlPGF3Hznw": [
+        "濡羽娜真",
         "https://yt3.ggpht.com/a/AATXAJzGvZJuJ92qM5WcfBcDZqPFSj_CGIEYp9VFmA=s288-c-k-c0xffffffff-no-rj-mo"
     ],
     "UC1uv2Oq6kNxgATlCiez59hw": [
