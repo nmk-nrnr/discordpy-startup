@@ -8,7 +8,7 @@ import copy
 from datetime import datetime, timedelta, timezone
 
 bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+token = os.environ['NzU3MTEyMTMzOTAwMTczNDAz.X2bpnw.WtQp1rcEy3N0SUXuPn8rGr13P5I']
 
 bot.event
 async def on_command_error(ctx, error):
