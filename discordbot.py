@@ -74,7 +74,7 @@ webhook_url_Hololive = 'https://discordapp.com/api/webhooks/757153708940460057/C
 webhook_url_Hololive_yotei = 'https://discordapp.com/api/webhooks/757153708940460057/CYpL4xpIUfyBysh2JM4rPDkBQIov9aw5Mi1wn1AS5TBKhTdBfQ3NIRFBnjn8Qv91wixq' #ホロライブ配信予定
 broadcast_data = {} #配信予定のデータを格納
 
-YOUTUBE_API_KEY = ["AIzaSyBhq7jXWlAbe5qK3Uo4ktlBBQha8uk3_pQ","AIzaSyDbfu-2PKUQuCDLqSvK0fan93yXEqqqEL4","AIzaSyC80I6-DalX5NXqPnHHn6gURzlrPBMQ_eM","AIzaSyDGcmSTLFh33RAe-bWO1Vyu0xk1dNTpzeY"]
+YOUTUBE_API_KEY = str_list = ['AIzaSyBhq7jXWlAbe5qK3Uo4ktlBBQha8uk3_pQ','AIzaSyDbfu-2PKUQuCDLqSvK0fan93yXEqqqEL4','AIzaSyC80I6-DalX5NXqPnHHn6gURzlrPBMQ_eM','AIzaSyDGcmSTLFh33RAe-bWO1Vyu0xk1dNTpzeY']
 
 def replace_JST(s):
     a = s.split("-")
